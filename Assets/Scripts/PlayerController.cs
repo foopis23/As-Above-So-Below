@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     public float JumpAccel;
     public float LookSensitivity;
 
+    public string FMODEventJump;
+    public string FMODEventLand;
+    public string FMODEventStep;
+
     // Private Fields
     private CharacterController characterController;
     private Camera camera;
@@ -21,6 +25,9 @@ public class PlayerController : MonoBehaviour
     private Vector2 rotation;
     private bool isRunning;
     private bool isGrounded;
+    private bool wasGrounded;
+
+    private FMODHelper fmodHelper;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +35,12 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         camera = GetComponentInChildren<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
+
+        wasGrounded = true;
+
+        fmodHelper = new FMODHelper(new string[] { FMODEventJump, FMODEventLand, FMODEventStep });
+
+        Debug.Log(fmodHelper);
     }
 
     // Update is called once per frame
@@ -51,7 +64,14 @@ public class PlayerController : MonoBehaviour
         if(isGrounded && velocity.y < 0)
         {
             velocity.y = 0f;
+
+            if(!wasGrounded)
+            {
+                fmodHelper.PlayOneshot(FMODEventLand);
+            }
         }
+
+        wasGrounded = isGrounded;
 
         // movement
         isRunning = Input.GetButton("Run");
@@ -68,9 +88,14 @@ public class PlayerController : MonoBehaviour
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y += JumpAccel;
+
+            fmodHelper.PlayOneshot(FMODEventJump);
         }
 
         characterController.Move(velocity * Time.deltaTime);
         Debug.Log(velocity.magnitude);
+
+        // sound
+
     }
 }
