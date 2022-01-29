@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public string FMODEventStep;
 
     // Public Properties
-    public bool IsHoldingObject { get; private set; }
+    public bool IsHoldingObject { get; set; }
 
     // Private Fields
     private CharacterController characterController;
@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
         camera = GetComponentInChildren<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
 
+        IsHoldingObject = false;
         wasGrounded = true;
         lastStepTime = Time.time;
 
@@ -54,7 +55,7 @@ public class PlayerController : MonoBehaviour
         // camera movement
         rotation.x += Input.GetAxis("Mouse X") * LookSensitivity;
         rotation.y += Input.GetAxis("Mouse Y") * LookSensitivity;
-        rotation.y = Mathf.Clamp(rotation.y, -90f, 90f);
+        rotation.y = Mathf.Clamp(rotation.y, -80f, 80f);
         var xQuat = Quaternion.AngleAxis(rotation.x, Vector3.up);
         var yQuat = Quaternion.AngleAxis(rotation.y, Vector3.left);
         transform.localRotation = xQuat;
@@ -100,7 +101,6 @@ public class PlayerController : MonoBehaviour
         }
 
         characterController.Move(velocity * Time.deltaTime);
-        Debug.Log(velocity.magnitude);
 
         // sound
         float stepDelay = 1f / (StepsPerSecond * (RunStepsMultiplier - 1f) / (RunSpeed - WalkSpeed) * (velocity.magnitude - WalkSpeed) + StepsPerSecond);

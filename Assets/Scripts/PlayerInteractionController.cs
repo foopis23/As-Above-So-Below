@@ -7,16 +7,14 @@ public class PlayerInteractionController : MonoBehaviour
     public Transform cameraLocation;
     public float maxInteractionDistance = 2.0f;
 
-    private IInteractable _lastLookedAt;
+    private Interactable _lastLookedAt;
     
     private void Update()
     {
         if (Physics.Raycast(cameraLocation.position, cameraLocation.forward, out var hit, maxInteractionDistance))
         {
-            var interactable = hit.collider.gameObject.GetComponent<IInteractable>();
+            var interactable = hit.collider.gameObject.GetComponent<Interactable>();
 
-            if (!interactable.IsInteractable()) return;
-            
             if (interactable != _lastLookedAt)
             {
                 _lastLookedAt?.OnLookStop();
@@ -25,9 +23,9 @@ public class PlayerInteractionController : MonoBehaviour
             
             interactable?.OnLook();
 
-            if (Input.GetButtonDown("Interact"))
+            if (Input.GetButtonDown("Interact") && interactable?.IsInteractable == true)
             {
-                interactable?.OnInteract();
+                interactable.OnInteract();
             }
 
             _lastLookedAt = interactable;
