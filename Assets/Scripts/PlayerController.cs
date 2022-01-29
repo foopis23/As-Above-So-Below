@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public float AirAccel;
     public float JumpAccel;
     public float LookSensitivity;
+    public float StepsPerSecond;
+    public float RunStepsMultiplier;
 
     public string FMODEventJump;
     public string FMODEventLand;
@@ -26,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private bool isRunning;
     private bool isGrounded;
     private bool wasGrounded;
+    private float lastStepTime;
 
     private FMODHelper fmodHelper;
 
@@ -37,10 +40,9 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         wasGrounded = true;
+        lastStepTime = Time.time;
 
         fmodHelper = new FMODHelper(new string[] { FMODEventJump, FMODEventLand, FMODEventStep });
-
-        Debug.Log(fmodHelper);
     }
 
     // Update is called once per frame
@@ -67,6 +69,8 @@ public class PlayerController : MonoBehaviour
 
             if(!wasGrounded)
             {
+                lastStepTime = Time.time;
+
                 fmodHelper.PlayOneshot(FMODEventLand);
             }
         }
@@ -93,9 +97,14 @@ public class PlayerController : MonoBehaviour
         }
 
         characterController.Move(velocity * Time.deltaTime);
-        Debug.Log(velocity.magnitude);
 
         // sound
-
+        float stepDelay = 1f / (StepsPerSecond * (RunStepsMultiplier - 1f) / (RunSpeed - WalkSpeed) * (velocity.magnitude - WalkSpeed) + StepsPerSecond);
+        Debug.Log(stepDelay);
+        if(isGrounded && velocity.magnitude > 0.1f && Time.time - lastStepTime > stepDelay)
+        {
+            fmodHelper.PlayOneshot(FMODEventStep);
+            lastStepTime = Time.time;
+        }
     }
 }
