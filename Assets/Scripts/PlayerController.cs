@@ -61,8 +61,8 @@ public class PlayerController : MonoBehaviour
         Vector3 acceleration = Vector3.ClampMagnitude(movement - Vector3.ClampMagnitude(velocityLocal2D, RunSpeed), 1) * maxAccel * Time.deltaTime;
         velocity += transform.TransformDirection(acceleration);
 
-        //! temp gravity
-        velocity.y -= 12f * Time.deltaTime;
+        // gravity
+        velocity -= Vector3.Scale(GravitySystem.GravityScale, Physics.gravity) * Time.deltaTime;
 
         // jump
         if(Input.GetButtonDown("Jump") && isGrounded)
