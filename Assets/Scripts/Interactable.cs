@@ -21,24 +21,18 @@ public abstract class Interactable : MonoBehaviour
     }
 
     // Private Fields
-    private GameObject player;
-
-    public abstract void OnInteract();
-    public abstract void OnLookStart();
-    public abstract void OnLookStop();
+    protected GameObject player;
     
     protected virtual void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        IsLookedAt = false;
+        IsInteractable = true;
     }
 
     protected virtual void Update()
     {
-
-    }
-
-    public virtual void OnLook()
-    {
+        Debug.Log(IsInteractable);
         if(OutlineObject != null)
         {
             if(IsLookedAt && IsInteractable)
@@ -52,4 +46,17 @@ public abstract class Interactable : MonoBehaviour
         }
     }
 
+    public virtual void OnLook() {}
+
+    public virtual void OnLookStart()
+    {
+        IsLookedAt = true;
+    }
+
+    public virtual void OnLookStop()
+    {
+        IsLookedAt = false;
+    }
+
+    public virtual void OnInteract() {}
 }

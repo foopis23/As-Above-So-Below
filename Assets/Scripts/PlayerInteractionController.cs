@@ -15,8 +15,6 @@ public class PlayerInteractionController : MonoBehaviour
         {
             var interactable = hit.collider.gameObject.GetComponent<Interactable>();
 
-            if (!interactable.IsInteractable) return;
-            
             if (interactable != _lastLookedAt)
             {
                 _lastLookedAt?.OnLookStop();
@@ -25,9 +23,9 @@ public class PlayerInteractionController : MonoBehaviour
             
             interactable?.OnLook();
 
-            if (Input.GetButtonDown("Interact"))
+            if (Input.GetButtonDown("Interact") && interactable?.IsInteractable == true)
             {
-                interactable?.OnInteract();
+                interactable.OnInteract();
             }
 
             _lastLookedAt = interactable;

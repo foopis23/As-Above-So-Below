@@ -128,7 +128,8 @@ GameObject:
   - component: {fileID: 3041718923046035187}
   - component: {fileID: 3041718923046035184}
   - component: {fileID: 3041718923046035185}
-  m_Layer: 0
+  - component: {fileID: 3879168264078195853}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -192,3 +193,17 @@ MonoBehaviour:
   FMODEventJump: Jump
   FMODEventLand: Land
   FMODEventStep: Walk
+--- !u!114 &3879168264078195853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3041718923046035186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b60d68954453b432d9c7550dbc3d5906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraLocation: {fileID: 3041718922337652251}
+  maxInteractionDistance: 2
