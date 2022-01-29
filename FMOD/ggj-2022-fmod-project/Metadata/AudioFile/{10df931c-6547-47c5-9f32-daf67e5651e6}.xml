@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{10df931c-6547-47c5-9f32-daf67e5651e6}">
+		<property name="assetPath">
+			<value>orb break.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.2776190476190474</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{a16b4d9e-1cc0-4a43-b92f-de6e07b16205}</destination>
+		</relationship>
+	</object>
+</objects>

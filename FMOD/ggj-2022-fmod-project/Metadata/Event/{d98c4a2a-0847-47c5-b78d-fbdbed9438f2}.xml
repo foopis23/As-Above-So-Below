@@ -5,7 +5,7 @@
 			<value>Orb Break</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{3004dc21-7036-42f7-ad29-1695f62e5dce}</destination>
@@ -90,7 +90,11 @@
 			<destination>{f93f1982-1ae9-426e-85fd-60b3892f084d}</destination>
 		</relationship>
 	</object>
-	<object class="MultiSound" id="{ee7676d1-ce57-453d-9672-19665d0ca7f4}" />
+	<object class="MultiSound" id="{ee7676d1-ce57-453d-9672-19665d0ca7f4}">
+		<relationship name="sounds">
+			<destination>{232671c1-094a-4cdc-a118-4eb09179cafe}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusEffectChain" id="{f97b3271-5723-4934-8ae9-576e879b20ed}">
 		<relationship name="effects">
 			<destination>{485b1473-349c-4cfd-8d59-f9f656ab3ba7}</destination>
@@ -117,6 +121,11 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{39fc69b6-ea61-4d2b-894d-61b0824b42bd}" />
+	<object class="SingleSound" id="{232671c1-094a-4cdc-a118-4eb09179cafe}">
+		<relationship name="audioFile">
+			<destination>{10df931c-6547-47c5-9f32-daf67e5651e6}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusFader" id="{485b1473-349c-4cfd-8d59-f9f656ab3ba7}" />
 	<object class="MixerBusEffectChain" id="{0cadb3bc-c563-4207-8dac-be1cd31f8e7b}">
 		<relationship name="effects">
