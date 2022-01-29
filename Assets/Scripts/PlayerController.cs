@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     public string FMODEventLand;
     public string FMODEventStep;
 
+    // Public Properties
+    public bool IsHoldingObject { get; private set; }
+
     // Private Fields
     private CharacterController characterController;
     private Camera camera;
@@ -97,11 +100,11 @@ public class PlayerController : MonoBehaviour
         }
 
         characterController.Move(velocity * Time.deltaTime);
+        Debug.Log(velocity.magnitude);
 
         // sound
         float stepDelay = 1f / (StepsPerSecond * (RunStepsMultiplier - 1f) / (RunSpeed - WalkSpeed) * (velocity.magnitude - WalkSpeed) + StepsPerSecond);
-        Debug.Log(stepDelay);
-        if(isGrounded && velocity.magnitude > 0.1f && Time.time - lastStepTime > stepDelay)
+        if(isGrounded && velocity.magnitude > 1f && Time.time - lastStepTime > stepDelay)
         {
             fmodHelper.PlayOneshot(FMODEventStep);
             lastStepTime = Time.time;
