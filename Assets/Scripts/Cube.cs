@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cube : MonoBehaviour, IInteractable
+public class Cube : Interactable
 {
     // Start is called before the first frame update
     void Start()
@@ -20,4 +20,13 @@ public class Cube : MonoBehaviour, IInteractable
     {
         return true;
     }
+
+    public void OnInteract()
+    {
+
+    }
+
+    public void OnLook() {}
+    public void OnLookStart() {}
+    public void OnLookStop() {}
 }
