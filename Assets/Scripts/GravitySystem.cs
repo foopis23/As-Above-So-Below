@@ -1,22 +1,6 @@
 using UnityEngine;
 
-public class GravitySystem : MonoBehaviour
+public static class GravitySystem
 {
-    private static GravitySystem _instance;
-    public static GravitySystem Instance
-    {
-        get
-        {
-            if (_instance != null) return _instance;
-            _instance = FindObjectOfType<GravitySystem>();
-            return _instance;
-        }
-    }
-
-    private void Awake()
-    {
-        _instance = this;
-    }
-
-    public Vector3 gravityScale;
+    public static Vector3 GravityScale = new Vector3(0, -1, 0);
 }

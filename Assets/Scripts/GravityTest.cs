@@ -8,7 +8,7 @@ public class GravityTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GravitySystem.Instance.gravityScale.y *= -1;
+            GravitySystem.GravityScale.y *= -1;
         }
     }
 }

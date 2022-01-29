@@ -12,6 +12,6 @@ public class GravityController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rigidbody.AddForce(GravitySystem.Instance.gravityScale * Physics.gravity.y * -1);
+        _rigidbody.AddForce(GravitySystem.GravityScale * Physics.gravity.y * -1);
     }
 }
