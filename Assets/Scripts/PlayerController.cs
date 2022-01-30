@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     public bool IsHoldingObject { get; set; }
     public GameObject HeldObject { get; set; }
 
+    public PauseMenuController pauseMenuController;
+
     // Private Fields
     private CharacterController characterController;
     private Camera camera;
@@ -67,6 +69,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (pauseMenuController.Paused) return;
+        
         // camera movement + player rotation
         yRotation += Input.GetAxis("Mouse Y") * LookSensitivity;
         yRotation = Mathf.Clamp(yRotation, -80f, 80f);
