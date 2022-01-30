@@ -563,7 +563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bdfa2f002bf74364891059469523f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneIndex: 1
+  nextSceneIndex: 0
   loadDelay: 1
   fadeToBlack: {fileID: 649934206}
 --- !u!65 &138323905
