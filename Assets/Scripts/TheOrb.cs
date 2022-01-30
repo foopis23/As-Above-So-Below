@@ -42,9 +42,10 @@ public class TheOrb : Interactable
                 player.GetComponent<PlayerController>().HeldObject = null;
                 ModelObject.SetActive(true);
                 fmodHelper.PlayOneshot(FMODEventCrush);
-                hintTextObject.enabled = false;
 
                 GravitySystem.GravityScale = new Vector3(0, -1, 0);
+
+                hintTextObject.enabled = false;
             }
         }
     }
@@ -59,8 +60,9 @@ public class TheOrb : Interactable
         ModelObject.SetActive(false);
         fmodHelper.PlayOneshot(FMODEventGrab);
         pickupTime = Time.time;
-        hintTextObject.text = CrushHintText;
 
         GravitySystem.GravityScale = new Vector3(0, 1, 0);
+
+        hintTextObject.text = CrushHintText;
     }
 }
