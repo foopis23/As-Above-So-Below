@@ -40,6 +40,7 @@ public class Cube : Interactable
             {
                 IsHeld = false;
                 player.GetComponent<PlayerController>().IsHoldingObject = false;
+                player.GetComponent<PlayerController>().HeldObject = null;
                 gravityController.enabled = true;
                 gameObject.layer = LayerMask.NameToLayer("Default");
             }
@@ -66,6 +67,7 @@ public class Cube : Interactable
 
         IsHeld = true;
         player.GetComponent<PlayerController>().IsHoldingObject = true;
+        player.GetComponent<PlayerController>().HeldObject = gameObject;
         gravityController.enabled = false;
         gameObject.layer = LayerMask.NameToLayer("Held Cube");
 

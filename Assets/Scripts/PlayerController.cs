@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public float VerticalRotationSpeed;
 
     public Transform GroundCheck;
+    public GameObject HeldOrbObject;
 
     public string FMODEventJump;
     public string FMODEventLand;
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     // Public Properties
     public bool IsHoldingObject { get; set; }
+    public GameObject HeldObject { get; set; }
 
     // Private Fields
     private CharacterController characterController;
@@ -105,6 +107,16 @@ public class PlayerController : MonoBehaviour
         {
             lastStepTime = Time.time;
             fmodHelper.PlayOneshot(FMODEventStep);
+        }
+
+        TheOrb orb;
+        if(HeldObject != null && HeldObject.TryGetComponent<TheOrb>(out orb))
+        {
+            HeldOrbObject.SetActive(true);
+        }
+        else
+        {
+            HeldOrbObject.SetActive(false);
         }
     }
 
