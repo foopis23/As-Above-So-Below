@@ -33,6 +33,7 @@ public class Button : Interactable
         buttonAnimator.Play(buttonAnimationName);
         interactionEvent.Invoke();
         IsInteractable = false;
+        hintTextObject.enabled = false;
 
         fmodHelper.PlayOneshot(FMODEventPress);
 
