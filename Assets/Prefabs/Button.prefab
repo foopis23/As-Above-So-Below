@@ -178,11 +178,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OutlineObject: {fileID: 1619728324}
+  HintText: '[LMB] Press'
   buttonAnimator: {fileID: 9184050220400446738}
   buttonAnimationName: Button Press
   buttonReleaseAnimation: Button Release
   pressLength: 1
   buttonText: 
+  FMODEventPress: 
   interactionEvent:
     m_PersistentCalls:
       m_Calls:
