@@ -6,7 +6,30 @@
   <component name="ChangeListManager">
     <list default="true" id="4ea1e367-7062-4064-8598-7758b4516c5e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ggj-2022/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ggj-2022/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Door.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Door.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Door_Close.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Door_Close.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Door_Open.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Door_Open.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Button.blend" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Button.blend.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Button.blend1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Button.blend1.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Button.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Button.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Door.blend" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Door.blend.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Door.blend1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Door.blend1.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Door.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Door.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Pressure_Plate.blend" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Pressure_Plate.blend.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Pressure_Plate.blend1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Pressure_Plate.blend1.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Pressure_Plate.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Pressure_Plate.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/The Orb.blend" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/The Orb.blend.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/The Orb.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/The Orb.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Door.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Door.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/probuilder.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/probuilder.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DoorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DoorController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +117,7 @@
       <workItem from="1643475139880" duration="263000" />
       <workItem from="1643486403770" duration="559000" />
       <workItem from="1643512542777" duration="2761000" />
+      <workItem from="1643558080718" duration="1042000" />
     </task>
     <servers />
   </component>

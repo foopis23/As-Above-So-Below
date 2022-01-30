@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    public GameObject door;
+    public Animator doorAnimator;
+    public string openAnimationName;
+    public string closeAnimationName;
     
     public void OpenDoor()
     {
-        door.SetActive(false);
+        doorAnimator.Play(openAnimationName);
     }
 
     public void CloseDoor()
     {
-        door.SetActive(true);
+        doorAnimator.Play(closeAnimationName);
     }
 }
