@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{22605813-a390-4a9f-b5b5-12f067e23a5a}">
+	<object class="AudioFile" id="{97eb7747-0341-44bd-a1d0-e841bb233e57}">
 		<property name="assetPath">
-			<value>Door Close.wav</value>
+			<value>pressure plate on.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
 		</property>
 		<property name="channelCount">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<property name="length">
-			<value>0.97916099773242626</value>
+			<value>0.22970521541950115</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{a16b4d9e-1cc0-4a43-b92f-de6e07b16205}</destination>
