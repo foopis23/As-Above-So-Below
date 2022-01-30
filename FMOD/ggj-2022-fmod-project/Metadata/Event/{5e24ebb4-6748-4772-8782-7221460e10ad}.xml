@@ -5,7 +5,7 @@
 			<value>Pressure Plate On</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{3004dc21-7036-42f7-ad29-1695f62e5dce}</destination>
@@ -118,7 +118,6 @@
 	<object class="MixerBusEffectChain" id="{096f9284-f87c-4ff3-982b-f7f71a2560a1}">
 		<relationship name="effects">
 			<destination>{6b09255b-e1cd-4533-b7e3-e527ded286e7}</destination>
-			<destination>{3843c20b-34c0-4aa3-881c-71538213aa75}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{35606c34-c089-48f7-b0f0-eec4df86c580}" />
@@ -135,6 +134,5 @@
 	</object>
 	<object class="MixerBusPanner" id="{bae02491-74f3-465b-a29f-3d5711259c87}" />
 	<object class="MixerBusFader" id="{6b09255b-e1cd-4533-b7e3-e527ded286e7}" />
-	<object class="SpatialiserEffect" id="{3843c20b-34c0-4aa3-881c-71538213aa75}" />
 	<object class="MixerBusFader" id="{b83d657a-79a4-477d-b340-4fca57192154}" />
 </objects>

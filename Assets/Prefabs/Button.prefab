@@ -184,7 +184,7 @@ MonoBehaviour:
   buttonReleaseAnimation: Button Release
   pressLength: 1
   buttonText: 
-  FMODEventPress: 
+  FMODEventPress: Button
   interactionEvent:
     m_PersistentCalls:
       m_Calls:

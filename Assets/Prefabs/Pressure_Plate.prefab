@@ -237,6 +237,7 @@ MonoBehaviour:
   deactivateEvent:
     m_PersistentCalls:
       m_Calls: []
+  FMODEventPress: Pressure Plate On
 --- !u!65 &1637912607
 BoxCollider:
   m_ObjectHideFlags: 0

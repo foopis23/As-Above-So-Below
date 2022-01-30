@@ -5,7 +5,7 @@
 			<value>Orb Grab</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{3004dc21-7036-42f7-ad29-1695f62e5dce}</destination>
@@ -80,6 +80,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{57686681-d4d9-4f89-9ad7-ad3b1b88a122}">
+		<property name="volume">
+			<value>-7.5</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{01f1e79d-1fb2-4a37-9b32-825a98053e22}</destination>
 		</relationship>
@@ -90,7 +93,11 @@
 			<destination>{ea8f0bcf-cda4-4e69-a221-45b266450537}</destination>
 		</relationship>
 	</object>
-	<object class="MultiSound" id="{13008022-240f-450f-aff8-b4557a8ccbac}" />
+	<object class="MultiSound" id="{13008022-240f-450f-aff8-b4557a8ccbac}">
+		<relationship name="sounds">
+			<destination>{9594191c-5437-4596-b69a-2ea1ef555f1e}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusEffectChain" id="{0b7ff7b2-9be6-4fd7-a5d6-3b94834bc90c}">
 		<relationship name="effects">
 			<destination>{3e7db581-6526-4a74-addb-8481e4f11f2f}</destination>
@@ -117,6 +124,11 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{d903e6ab-f409-42de-ba21-21cafcfdc3c9}" />
+	<object class="SingleSound" id="{9594191c-5437-4596-b69a-2ea1ef555f1e}">
+		<relationship name="audioFile">
+			<destination>{e7b9ea2d-091a-4cb3-9430-4b8e896844f0}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusFader" id="{3e7db581-6526-4a74-addb-8481e4f11f2f}" />
 	<object class="MixerBusEffectChain" id="{02746296-ca28-447d-b78b-d81a540deb45}">
 		<relationship name="effects">
