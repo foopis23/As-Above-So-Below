@@ -7,6 +7,11 @@ public class MenuController : MonoBehaviour
     public Animator FadeToBlackController;
     public Animator MainPanel;
     public Animator LevelSelectPanel;
+    
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
 
     public void ShowMainPanel()
     {
