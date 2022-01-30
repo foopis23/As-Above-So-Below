@@ -209,8 +209,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OutlineObject: {fileID: 6408824528003153086}
+  HintText: '[LMB] Grab'
   ModelObject: {fileID: 5321315632502026422}
   PickupCrushDelay: 1
+  CrushHintText: '[RMB] Crush'
   FMODEventGrab: Orb Grab
   FMODEventCrush: Orb Break
 --- !u!135 &6477421358896349616

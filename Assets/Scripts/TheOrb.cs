@@ -7,6 +7,7 @@ public class TheOrb : Interactable
     // Editor Fields
     public GameObject ModelObject;
     public float PickupCrushDelay;
+    public string CrushHintText;
     
     public string FMODEventGrab;
     public string FMODEventCrush;
@@ -41,6 +42,7 @@ public class TheOrb : Interactable
                 player.GetComponent<PlayerController>().HeldObject = null;
                 ModelObject.SetActive(true);
                 fmodHelper.PlayOneshot(FMODEventCrush);
+                hintTextObject.enabled = false;
 
                 GravitySystem.GravityScale = new Vector3(0, -1, 0);
             }
@@ -57,6 +59,7 @@ public class TheOrb : Interactable
         ModelObject.SetActive(false);
         fmodHelper.PlayOneshot(FMODEventGrab);
         pickupTime = Time.time;
+        hintTextObject.text = CrushHintText;
 
         GravitySystem.GravityScale = new Vector3(0, 1, 0);
     }
