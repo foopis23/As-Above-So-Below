@@ -12,6 +12,8 @@ public class LoadTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            PlayerPrefs.SetInt("LastScene", SceneManager.GetActiveScene().buildIndex);
+            PlayerPrefs.Save();
             fadeToBlack.Play("FadeToBlack");
             StartCoroutine(LoadNextScene());
         }
