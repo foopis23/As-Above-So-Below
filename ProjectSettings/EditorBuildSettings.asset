@@ -17,4 +17,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/s-2.unity
     guid: 3a95cdfaa1e3a6e4d8c2f6b3b8aa77e1
+  - enabled: 1
+    path: Assets/Scenes/s-3TheOrb.unity
+    guid: 2e43c49d6418ea846bca82729a199003
+  - enabled: 1
+    path: Assets/Scenes/s-4.unity
+    guid: 4027b6f93f38ed444a1826d7bb2785f2
+  - enabled: 1
+    path: Assets/Scenes/s-5.unity
+    guid: d6324a4c85a553044b063c598acacaa7
+  - enabled: 1
+    path: Assets/Scenes/s-2-5.unity
+    guid: b87568fa4df773f458e226e004f63fab
   m_configObjects: {}
