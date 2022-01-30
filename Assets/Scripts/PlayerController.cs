@@ -19,6 +19,11 @@ public class PlayerController : MonoBehaviour
     public Transform GroundCheck;
     public GameObject HeldOrbObject;
 
+    public Animator OrbAnimator;
+    public string CrushAnimationName;
+    public float CrushLength;
+    public ParticleSystem CrushParticle;
+
     public string FMODEventJump;
     public string FMODEventLand;
     public string FMODEventStep;
@@ -49,6 +54,7 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         camera = GetComponentInChildren<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
+        HeldOrbObject.SetActive(false);
 
         desiredRotation = Quaternion.identity;
         IsHoldingObject = false;
@@ -79,10 +85,16 @@ public class PlayerController : MonoBehaviour
                 Vector3 desiredRight = transform.right;
                 Vector3 desiredForward = Vector3.Cross(desiredUp, desiredRight);
                 desiredRotation = Quaternion.LookRotation(desiredForward, desiredUp);
-                transform.rotation *= Quaternion.AngleAxis(0.001f, transform.right);
             }
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, desiredRotation, Mathf.Min(Time.deltaTime * VerticalRotationSpeed, angleFromGravity));
+
+            // fail-safe because my code is bad
+            float newAngle = Vector3.Angle(transform.up, -GravitySystem.GravityScale);
+            if(Mathf.Abs(newAngle - angleFromGravity) < VerticalRotationSpeed * Time.deltaTime * 0.5f)
+            {
+                transform.rotation = desiredRotation;
+            }
         }
         else
         {
@@ -116,8 +128,20 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            HeldOrbObject.SetActive(false);
+            if(HeldOrbObject.activeSelf)
+            {
+                OrbAnimator.Play(CrushAnimationName);
+                CrushParticle.Play();
+                StartCoroutine(OrbCrushed());
+            }
         }
+    }
+
+    private IEnumerator OrbCrushed()
+    {
+        yield return new WaitForSeconds(CrushLength);
+        
+        HeldOrbObject.SetActive(false);
     }
 
     void FixedUpdate()
