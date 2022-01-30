@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3041718922337652244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3041718923046035187}
@@ -128,9 +128,10 @@ GameObject:
   - component: {fileID: 3041718923046035187}
   - component: {fileID: 3041718923046035184}
   - component: {fileID: 3041718923046035185}
-  m_Layer: 0
+  - component: {fileID: 3879168264078195853}
+  m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,7 +165,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.1
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.0001
   m_Center: {x: 0, y: 0, z: 0}
@@ -180,15 +181,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22698e9d7083a1543b840a67a5ef57ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkSpeed: 5
-  RunSpeed: 10
+  WalkSpeed: 4
+  RunSpeed: 7
   WalkAccel: 20
   RunAccel: 30
   AirAccel: 10
-  JumpAccel: 8
+  JumpAccel: 5
   LookSensitivity: 5
   StepsPerSecond: 2
   RunStepsMultiplier: 1.5
   FMODEventJump: Jump
   FMODEventLand: Land
   FMODEventStep: Walk
+--- !u!114 &3879168264078195853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3041718923046035186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b60d68954453b432d9c7550dbc3d5906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraLocation: {fileID: 3041718922337652251}
+  maxInteractionDistance: 2
