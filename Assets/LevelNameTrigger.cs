@@ -24,6 +24,7 @@ public class LevelNameTrigger : MonoBehaviour
         fadeAnimator.gameObject.SetActive(true);
         fadeAnimator.Play("Fade");
         hasPlayed = true;
+        MusicController.Instance.StartMusic();
         StartCoroutine(OnAnimationFinished());
     }
 
