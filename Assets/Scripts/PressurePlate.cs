@@ -13,7 +13,16 @@ public class PressurePlate : MonoBehaviour
     public UnityEvent activateEvent;
     public UnityEvent deactivateEvent;
 
+    public string FMODEventPress;
+
     private int _gravityItemsOnPlate;
+
+    private FMODHelper fmodHelper;
+
+    void Start()
+    {
+        fmodHelper = new FMODHelper(new string[] { FMODEventPress });
+    }
 
     public void OnTriggerEnter(Collider other)
     {
@@ -22,6 +31,7 @@ public class PressurePlate : MonoBehaviour
         {
             activateEvent.Invoke();
             animator.Play(downAnimationName);
+            fmodHelper.PlayOneshot(FMODEventPress);
         }
             
         _gravityItemsOnPlate++;
@@ -36,6 +46,7 @@ public class PressurePlate : MonoBehaviour
         {
             deactivateEvent.Invoke();
             animator.Play(upAnimationName);
+            fmodHelper.PlayOneshot(FMODEventPress);
         }
     }
 }
