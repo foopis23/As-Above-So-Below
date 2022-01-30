@@ -1796,6 +1796,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room Exit
       objectReference: {fileID: 0}
+    - target: {fileID: 3220023296072901987, guid: 5efb909bab77042a5bad702e23f90bd3, type: 3}
+      propertyPath: nextSceneIndex
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5efb909bab77042a5bad702e23f90bd3, type: 3}
 --- !u!1 &920203595
