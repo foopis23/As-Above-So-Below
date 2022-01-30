@@ -35,10 +35,7 @@ public class Cube : Interactable
         if(IsHeld)
         {
             Vector3 holdPosition = camera.transform.position + camera.transform.up * -0.25f + camera.transform.forward * HoldDistance;
-            rigidbody.MovePosition(holdPosition);
-            rigidbody.MoveRotation(player.transform.rotation);
 
-            Debug.Log(justPickedUp);
             if((!justPickedUp && Input.GetButtonDown("Interact")) || (holdPosition - transform.position).magnitude > 3f)
             {
                 IsHeld = false;
@@ -48,6 +45,18 @@ public class Cube : Interactable
             }
 
             justPickedUp = false;
+        }
+    }
+
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+        if(IsHeld)
+        {
+            Vector3 holdPosition = camera.transform.position + camera.transform.up * -0.25f + camera.transform.forward * HoldDistance;
+            rigidbody.MovePosition(holdPosition);
+            rigidbody.MoveRotation(player.transform.rotation);
         }
     }
 
