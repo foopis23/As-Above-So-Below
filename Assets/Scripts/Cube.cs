@@ -15,6 +15,7 @@ public class Cube : Interactable
     private Rigidbody rigidbody;
     private GravityController gravityController;
     private Camera camera;
+    private Vector3 spawnPos;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -25,6 +26,8 @@ public class Cube : Interactable
         gravityController = GetComponent<GravityController>();
         camera = Camera.main;
         IsHeld = false;
+
+        spawnPos = transform.position;
     }
 
     // Update is called once per frame
@@ -45,6 +48,11 @@ public class Cube : Interactable
                 gameObject.layer = LayerMask.NameToLayer("Default");
                 hintTextObject.enabled = false;
             }
+        }
+
+        if(transform.position.y < -10f)
+        {
+            transform.position = spawnPos;
         }
     }
 
