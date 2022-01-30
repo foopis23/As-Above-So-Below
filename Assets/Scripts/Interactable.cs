@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public abstract class Interactable : MonoBehaviour
 {
     // Editor Fields
     public GameObject OutlineObject;
+    public string HintText;
 
     // Public Properties
     public bool IsLookedAt { get; private set; }
@@ -22,10 +24,12 @@ public abstract class Interactable : MonoBehaviour
 
     // Private Fields
     protected GameObject player;
+    protected TextMeshProUGUI hintTextObject;
     
     protected virtual void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        hintTextObject = GameObject.FindGameObjectWithTag("Hint Text").GetComponent<TextMeshProUGUI>();
         IsLookedAt = false;
         IsInteractable = true;
     }
@@ -52,11 +56,22 @@ public abstract class Interactable : MonoBehaviour
     public virtual void OnLookStart()
     {
         IsLookedAt = true;
+
+        if(IsInteractable)
+        {
+            hintTextObject.text = HintText;
+            hintTextObject.enabled = true;
+        }
     }
 
     public virtual void OnLookStop()
     {
         IsLookedAt = false;
+
+        if(IsInteractable)
+        {
+            hintTextObject.enabled = false;
+        }
     }
 
     public virtual void OnInteract() {}

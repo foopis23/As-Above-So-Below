@@ -6,6 +6,7 @@ public class Cube : Interactable
 {
     // Editor Fields
     public float HoldDistance = 1.5f;
+    public string DropHintText;
 
     // Public Properties
     public bool IsHeld { get; private set; }
@@ -42,6 +43,7 @@ public class Cube : Interactable
                 player.GetComponent<PlayerController>().HeldObject = null;
                 gravityController.enabled = true;
                 gameObject.layer = LayerMask.NameToLayer("Default");
+                hintTextObject.enabled = false;
             }
         }
     }
@@ -67,5 +69,6 @@ public class Cube : Interactable
         player.GetComponent<PlayerController>().HeldObject = gameObject;
         gravityController.enabled = false;
         gameObject.layer = LayerMask.NameToLayer("Held Cube");
+        hintTextObject.text = DropHintText;
     }
 }
