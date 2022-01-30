@@ -140,7 +140,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OutlineObject: {fileID: 7076463707695728946}
+  HintText: '[LMB] Pick Up'
   HoldDistance: 1.5
+  DropHintText: '[RMB] Drop'
 --- !u!1 &7076463707695728946
 GameObject:
   m_ObjectHideFlags: 0
