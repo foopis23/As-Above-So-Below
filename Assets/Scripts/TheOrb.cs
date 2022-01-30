@@ -6,6 +6,7 @@ public class TheOrb : Interactable
 {
     // Editor Fields
     public GameObject ModelObject;
+    public float PickupCrushDelay;
     
     public string FMODEventGrab;
     public string FMODEventCrush;
@@ -15,6 +16,7 @@ public class TheOrb : Interactable
 
     // Private Fields
     FMODHelper fmodHelper;
+    private float pickupTime;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -32,7 +34,7 @@ public class TheOrb : Interactable
 
         if(IsHeld)
         {
-            if(Input.GetButtonDown("Crush"))
+            if(Time.time - pickupTime > PickupCrushDelay && Input.GetButtonDown("Crush"))
             {
                 IsHeld = false;
                 player.GetComponent<PlayerController>().IsHoldingObject = false;
@@ -54,6 +56,7 @@ public class TheOrb : Interactable
         player.GetComponent<PlayerController>().HeldObject = gameObject;
         ModelObject.SetActive(false);
         fmodHelper.PlayOneshot(FMODEventGrab);
+        pickupTime = Time.time;
 
         GravitySystem.GravityScale = new Vector3(0, 1, 0);
     }

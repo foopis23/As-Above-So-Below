@@ -14,7 +14,6 @@ public class Cube : Interactable
     private Rigidbody rigidbody;
     private GravityController gravityController;
     private Camera camera;
-    private bool justPickedUp;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -36,7 +35,7 @@ public class Cube : Interactable
         {
             Vector3 holdPosition = camera.transform.position + camera.transform.up * -0.25f + camera.transform.forward * HoldDistance;
 
-            if((!justPickedUp && Input.GetButtonDown("Interact")) || (holdPosition - transform.position).magnitude > 3f)
+            if(Input.GetButtonDown("Crush") || (holdPosition - transform.position).magnitude > 3f)
             {
                 IsHeld = false;
                 player.GetComponent<PlayerController>().IsHoldingObject = false;
@@ -44,8 +43,6 @@ public class Cube : Interactable
                 gravityController.enabled = true;
                 gameObject.layer = LayerMask.NameToLayer("Default");
             }
-
-            justPickedUp = false;
         }
     }
 
@@ -70,7 +67,5 @@ public class Cube : Interactable
         player.GetComponent<PlayerController>().HeldObject = gameObject;
         gravityController.enabled = false;
         gameObject.layer = LayerMask.NameToLayer("Held Cube");
-
-        justPickedUp = true;
     }
 }
