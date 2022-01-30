@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ea1e367-7062-4064-8598-7758b4516c5e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ggj-2022/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ggj-2022/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/FMOD/Resources/FMODStudioSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/FMOD/Resources/FMODStudioSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ProBuilder Data/Default Material Palette.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ProBuilder Data/Default Material Palette.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/probuilder.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/probuilder.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/s-1TheCube.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/s-1TheCube.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/s-2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/s-2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +99,7 @@
       <workItem from="1643512542777" duration="2761000" />
       <workItem from="1643558080718" duration="1042000" />
       <workItem from="1643559804495" duration="403000" />
-      <workItem from="1643562315315" duration="2310000" />
+      <workItem from="1643562315315" duration="2669000" />
     </task>
     <servers />
   </component>

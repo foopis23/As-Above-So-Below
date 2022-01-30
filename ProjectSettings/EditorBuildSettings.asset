@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 2bd14158fd8544ff0b49bb290e1cacc0
   - enabled: 1
-    path: Assets/Scenes/probuilder.unity
-    guid: f015ed6ef314543cf9b3680eb057a4ea
+    path: Assets/Scenes/s-1TheCube.unity
+    guid: df61aed3d6db54c43877c9846c8e76b8
+  - enabled: 1
+    path: Assets/Scenes/s-2.unity
+    guid: 3a95cdfaa1e3a6e4d8c2f6b3b8aa77e1
   m_configObjects: {}
