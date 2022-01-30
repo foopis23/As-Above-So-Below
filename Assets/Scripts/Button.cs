@@ -13,7 +13,18 @@ public class Button : Interactable
     
     public string buttonText;
 
+    public string FMODEventPress;
+
     public UnityEvent interactionEvent;
+
+    private FMODHelper fmodHelper;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        fmodHelper = new FMODHelper(new string[] { FMODEventPress });
+    }
     
     public override void OnInteract()
     {
@@ -22,6 +33,8 @@ public class Button : Interactable
         buttonAnimator.Play(buttonAnimationName);
         interactionEvent.Invoke();
         IsInteractable = false;
+
+        fmodHelper.PlayOneshot(FMODEventPress);
 
         StartCoroutine(PressedDown());
     }
@@ -32,5 +45,7 @@ public class Button : Interactable
         
         buttonAnimator.Play(buttonReleaseAnimation);
         IsInteractable = true;
+
+        fmodHelper.PlayOneshot(FMODEventPress);
     }
 }
