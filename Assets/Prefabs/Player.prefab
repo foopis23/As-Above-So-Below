@@ -206,7 +206,7 @@ MonoBehaviour:
   LookSensitivity: 5
   StepsPerSecond: 2
   RunStepsMultiplier: 1.5
-  VerticalRotationSpeed: 4
+  VerticalRotationSpeed: 200
   GroundCheck: {fileID: 6984531958860527723}
   FMODEventJump: Jump
   FMODEventLand: Land

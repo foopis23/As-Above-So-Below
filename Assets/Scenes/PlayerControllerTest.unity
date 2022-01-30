@@ -666,7 +666,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2144974997}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 195564a2238cd7a48912a3569276d193, type: 3}
+  m_Script: {fileID: 11500000, guid: 68729cf6603034707969e0b675244afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OutlineObject: {fileID: 917587708}
@@ -678,10 +678,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3041718923046035185, guid: 7d2ffbb7f99fe734a9446e349a1f548a, type: 3}
-      propertyPath: VerticalRotationSpeed
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 3041718923046035186, guid: 7d2ffbb7f99fe734a9446e349a1f548a, type: 3}
       propertyPath: m_Name
       value: Player

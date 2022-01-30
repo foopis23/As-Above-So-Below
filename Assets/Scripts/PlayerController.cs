@@ -30,11 +30,13 @@ public class PlayerController : MonoBehaviour
     private Camera camera;
     private Vector3 velocity;
     private Vector3 movement;
+    private Quaternion desiredRotation;
     private float yRotation;
     private bool isRunning;
     private bool isGrounded;
     private bool wasGrounded;
     private bool needJump;
+    private bool needStartRotate;
     private float lastStepTime;
 
     private FMODHelper fmodHelper;
@@ -46,8 +48,10 @@ public class PlayerController : MonoBehaviour
         camera = GetComponentInChildren<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
 
+        desiredRotation = Quaternion.identity;
         IsHoldingObject = false;
         wasGrounded = true;
+        needStartRotate = true;
         lastStepTime = Time.time;
 
         fmodHelper = new FMODHelper(new string[] { FMODEventJump, FMODEventLand, FMODEventStep });
@@ -62,12 +66,25 @@ public class PlayerController : MonoBehaviour
         transform.rotation *= Quaternion.Euler(0f, Input.GetAxis("Mouse X") * LookSensitivity, 0f);
         camera.transform.localRotation = Quaternion.AngleAxis(yRotation, Vector3.left);
 
+        //Vector3 rotationAxis = Vector3.Cross(transform.up, -GravitySystem.GravityScale).normalized;
         float angleFromGravity = Vector3.Angle(transform.up, -GravitySystem.GravityScale);
-        Debug.Log(angleFromGravity);
-        if(angleFromGravity > 0.0001f)
+        if(angleFromGravity > 0.001f)
         {
-            Vector3 rotationAxis = Vector3.Cross(transform.up, -GravitySystem.GravityScale).normalized;
-            transform.rotation *= Quaternion.AngleAxis(Mathf.Min(VerticalRotationSpeed * Time.deltaTime, angleFromGravity), rotationAxis);
+            if(needStartRotate)
+            {
+                needStartRotate = false;
+                Vector3 desiredUp = -GravitySystem.GravityScale.normalized;
+                Vector3 desiredRight = transform.right;
+                Vector3 desiredForward = Vector3.Cross(desiredUp, desiredRight);
+                desiredRotation = Quaternion.LookRotation(desiredForward, desiredUp);
+                transform.rotation *= Quaternion.AngleAxis(0.001f, transform.right);
+            }
+
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, desiredRotation, Mathf.Min(Time.deltaTime * VerticalRotationSpeed, angleFromGravity));
+        }
+        else
+        {
+            needStartRotate = true;
         }
 
         isGrounded = Physics.Raycast(GroundCheck.position, -transform.up, 0.01f);
