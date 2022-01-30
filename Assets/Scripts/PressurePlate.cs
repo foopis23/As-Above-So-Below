@@ -7,6 +7,9 @@ using UnityEngine.Serialization;
 
 public class PressurePlate : MonoBehaviour
 {
+    public Animator animator;
+    public string downAnimationName;
+    public string upAnimationName;
     public UnityEvent activateEvent;
     public UnityEvent deactivateEvent;
 
@@ -18,6 +21,7 @@ public class PressurePlate : MonoBehaviour
         if (_gravityItemsOnPlate == 0)
         {
             activateEvent.Invoke();
+            animator.Play(downAnimationName);
         }
             
         _gravityItemsOnPlate++;
@@ -31,6 +35,7 @@ public class PressurePlate : MonoBehaviour
         if (_gravityItemsOnPlate == 0)
         {
             deactivateEvent.Invoke();
+            animator.Play(upAnimationName);
         }
     }
 }
