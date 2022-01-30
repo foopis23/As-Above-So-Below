@@ -29,7 +29,7 @@ public abstract class Interactable : MonoBehaviour
     protected virtual void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        hintTextObject = GameObject.FindGameObjectWithTag("Hint Text").GetComponent<TextMeshProUGUI>();
+        hintTextObject = GameObject.FindGameObjectWithTag("Hint Text")?.GetComponent<TextMeshProUGUI>();
         IsLookedAt = false;
         IsInteractable = true;
     }
