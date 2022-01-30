@@ -8,7 +8,6 @@ public class LoadLevelAction : MonoBehaviour
     void Start()
     {
         int lastLevel = PlayerPrefs.GetInt("LastScene", 0);
-        Debug.Log(lastLevel);
         if(levelIndex > lastLevel + 1)
         {
             GetComponent<UnityEngine.UI.Button>().interactable = false;
