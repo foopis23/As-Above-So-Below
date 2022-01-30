@@ -32,7 +32,6 @@ public abstract class Interactable : MonoBehaviour
 
     protected virtual void Update()
     {
-        Debug.Log(IsInteractable);
         if(OutlineObject != null)
         {
             if(IsLookedAt && IsInteractable)
@@ -45,6 +44,8 @@ public abstract class Interactable : MonoBehaviour
             }
         }
     }
+
+    protected virtual void FixedUpdate() {}
 
     public virtual void OnLook() {}
 

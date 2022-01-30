@@ -6,7 +6,7 @@ public class GravityTest : MonoBehaviour
 {
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             GravitySystem.GravityScale.y *= -1;
         }
