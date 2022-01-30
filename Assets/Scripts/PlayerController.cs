@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
             needStartRotate = true;
         }
 
-        isGrounded = Physics.Raycast(GroundCheck.position, -transform.up, 0.01f);
+        isGrounded = Physics.Raycast(GroundCheck.position, -transform.up, 0.1f);
         isRunning = Input.GetButton("Run");
         float maxSpeed = isRunning || !isGrounded ? RunSpeed : WalkSpeed;
         movement = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")).normalized * maxSpeed;
