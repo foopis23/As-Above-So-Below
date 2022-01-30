@@ -5,11 +5,15 @@ using TMPro;
 
 public class CrushTextTrigger : MonoBehaviour
 {
-    // Editor Fields
-    public TextMeshProUGUI HintTextObject;
+    private TextMeshProUGUI hintTextObject;
+
+    void Start()
+    {
+        hintTextObject = GameObject.FindGameObjectWithTag("Hint Text")?.GetComponent<TextMeshProUGUI>();
+    }
 
     void OnTriggerEnter()
     {
-        HintTextObject.text = "[RMB] Crush";
+        hintTextObject.text = "[RMB] Crush";
     }
 }
