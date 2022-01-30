@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RotatingPlatform : MonoBehaviour
 {
-    public float RotationSpeed = 10;
+    public float RotationSpeed = 100;
 
     private Quaternion desiredRotation;
 
@@ -17,6 +17,11 @@ public class RotatingPlatform : MonoBehaviour
     {
         float angle = Quaternion.Angle(transform.rotation, desiredRotation);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, desiredRotation, Mathf.Min(Time.deltaTime * RotationSpeed, angle));
+
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            RotatePlatform();
+        }
     }
 
     public void RotatePlatform()
