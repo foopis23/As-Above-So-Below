@@ -57,7 +57,7 @@ public abstract class Interactable : MonoBehaviour
     {
         IsLookedAt = true;
 
-        if(IsInteractable)
+        if(IsInteractable && hintTextObject != null)
         {
             hintTextObject.text = HintText;
             hintTextObject.enabled = true;
@@ -68,7 +68,7 @@ public abstract class Interactable : MonoBehaviour
     {
         IsLookedAt = false;
 
-        if(IsInteractable)
+        if(IsInteractable && hintTextObject != null)
         {
             hintTextObject.enabled = false;
         }
