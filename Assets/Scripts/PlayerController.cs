@@ -14,6 +14,15 @@ public class PlayerController : MonoBehaviour
     public float LookSensitivity;
     public float StepsPerSecond;
     public float RunStepsMultiplier;
+    public float VerticalRotationSpeed;
+
+    public Transform GroundCheck;
+    public GameObject HeldOrbObject;
+
+    public Animator OrbAnimator;
+    public string CrushAnimationName;
+    public float CrushLength;
+    public ParticleSystem CrushParticle;
 
     public string FMODEventJump;
     public string FMODEventLand;
@@ -21,16 +30,22 @@ public class PlayerController : MonoBehaviour
 
     // Public Properties
     public bool IsHoldingObject { get; set; }
+    public GameObject HeldObject { get; set; }
+
+    public PauseMenuController pauseMenuController;
 
     // Private Fields
     private CharacterController characterController;
     private Camera camera;
     private Vector3 velocity;
     private Vector3 movement;
-    private Vector2 rotation;
+    private Quaternion desiredRotation;
+    private float yRotation;
     private bool isRunning;
     private bool isGrounded;
     private bool wasGrounded;
+    private bool needJump;
+    private bool needStartRotate;
     private float lastStepTime;
 
     private FMODHelper fmodHelper;
@@ -41,31 +56,104 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         camera = GetComponentInChildren<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
+        HeldOrbObject.SetActive(false);
 
+        desiredRotation = Quaternion.identity;
         IsHoldingObject = false;
         wasGrounded = true;
+        needStartRotate = true;
         lastStepTime = Time.time;
 
         fmodHelper = new FMODHelper(new string[] { FMODEventJump, FMODEventLand, FMODEventStep });
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // camera movement
-        rotation.x += Input.GetAxis("Mouse X") * LookSensitivity;
-        rotation.y += Input.GetAxis("Mouse Y") * LookSensitivity;
-        rotation.y = Mathf.Clamp(rotation.y, -80f, 80f);
-        var xQuat = Quaternion.AngleAxis(rotation.x, Vector3.up);
-        var yQuat = Quaternion.AngleAxis(rotation.y, Vector3.left);
-        transform.localRotation = xQuat;
-		camera.transform.localRotation = yQuat;
+        if (pauseMenuController.Paused) return;
+        
+        // camera movement + player rotation
+        yRotation += Input.GetAxis("Mouse Y") * LookSensitivity;
+        yRotation = Mathf.Clamp(yRotation, -80f, 80f);
+        
+        transform.rotation *= Quaternion.Euler(0f, Input.GetAxis("Mouse X") * LookSensitivity, 0f);
+        camera.transform.localRotation = Quaternion.AngleAxis(yRotation, Vector3.left);
 
+        //Vector3 rotationAxis = Vector3.Cross(transform.up, -GravitySystem.GravityScale).normalized;
+        float angleFromGravity = Vector3.Angle(transform.up, -GravitySystem.GravityScale);
+        if(angleFromGravity > 0.001f)
+        {
+            if(needStartRotate)
+            {
+                needStartRotate = false;
+                Vector3 desiredUp = -GravitySystem.GravityScale.normalized;
+                Vector3 desiredRight = transform.right;
+                Vector3 desiredForward = Vector3.Cross(desiredUp, desiredRight);
+                desiredRotation = Quaternion.LookRotation(desiredForward, desiredUp);
+            }
+
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, desiredRotation, Mathf.Min(Time.deltaTime * VerticalRotationSpeed, angleFromGravity));
+
+            // fail-safe because my code is bad
+            float newAngle = Vector3.Angle(transform.up, -GravitySystem.GravityScale);
+            if(Mathf.Abs(newAngle - angleFromGravity) < VerticalRotationSpeed * Time.deltaTime * 0.5f)
+            {
+                transform.rotation = desiredRotation;
+            }
+        }
+        else
+        {
+            needStartRotate = true;
+        }
+
+        isGrounded = Physics.Raycast(GroundCheck.position, -transform.up, 0.01f);
+        isRunning = Input.GetButton("Run");
+        float maxSpeed = isRunning || !isGrounded ? RunSpeed : WalkSpeed;
+        movement = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")).normalized * maxSpeed;
+
+        // jump
+        if(Input.GetButtonDown("Jump") && isGrounded)
+        {
+            needJump = true;
+            fmodHelper.PlayOneshot(FMODEventJump);
+        }
+
+        // sound
+        float stepDelay = 1f / (StepsPerSecond * (RunStepsMultiplier - 1f) / (RunSpeed - WalkSpeed) * (velocity.magnitude - WalkSpeed) + StepsPerSecond);
+        if(isGrounded && velocity.magnitude > 1f && Time.time - lastStepTime > stepDelay)
+        {
+            lastStepTime = Time.time;
+            fmodHelper.PlayOneshot(FMODEventStep);
+        }
+
+        TheOrb orb;
+        if(HeldObject != null && HeldObject.TryGetComponent<TheOrb>(out orb))
+        {
+            HeldOrbObject.SetActive(true);
+        }
+        else
+        {
+            if(HeldOrbObject.activeSelf)
+            {
+                OrbAnimator.Play(CrushAnimationName);
+                CrushParticle.Play();
+                StartCoroutine(OrbCrushed());
+            }
+        }
+    }
+
+    private IEnumerator OrbCrushed()
+    {
+        yield return new WaitForSeconds(CrushLength);
+        
+        HeldOrbObject.SetActive(false);
+    }
+
+    void FixedUpdate()
+    {
         // get velocity
         velocity = characterController.velocity;
         Vector3 velocityLocal2D = transform.InverseTransformDirection(velocity);
         velocityLocal2D.y = 0f;
-        isGrounded = characterController.isGrounded;
 
         if(isGrounded && velocity.y < 0)
         {
@@ -82,32 +170,19 @@ public class PlayerController : MonoBehaviour
         wasGrounded = isGrounded;
 
         // movement
-        isRunning = Input.GetButton("Run");
-        float maxSpeed = isRunning || !isGrounded ? RunSpeed : WalkSpeed;
         float maxAccel = (isGrounded ? (isRunning ? RunAccel : WalkAccel) : AirAccel);
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")).normalized * maxSpeed;
-        Vector3 acceleration = Vector3.ClampMagnitude(movement - Vector3.ClampMagnitude(velocityLocal2D, RunSpeed), 1) * maxAccel * Time.deltaTime;
+        Vector3 acceleration = Vector3.ClampMagnitude(movement - Vector3.ClampMagnitude(velocityLocal2D, RunSpeed), 1) * maxAccel * Time.fixedDeltaTime;
         velocity += transform.TransformDirection(acceleration);
 
         // gravity
-        velocity -= Vector3.Scale(GravitySystem.GravityScale, Physics.gravity) * Time.deltaTime;
+        velocity -= Vector3.Scale(GravitySystem.GravityScale, Physics.gravity) * Time.fixedDeltaTime;
 
-        // jump
-        if(Input.GetButtonDown("Jump") && isGrounded)
+        if(needJump)
         {
-            velocity.y += JumpAccel;
-
-            fmodHelper.PlayOneshot(FMODEventJump);
+            needJump = false;
+            velocity -= JumpAccel * GravitySystem.GravityScale;
         }
 
-        characterController.Move(velocity * Time.deltaTime);
-
-        // sound
-        float stepDelay = 1f / (StepsPerSecond * (RunStepsMultiplier - 1f) / (RunSpeed - WalkSpeed) * (velocity.magnitude - WalkSpeed) + StepsPerSecond);
-        if(isGrounded && velocity.magnitude > 1f && Time.time - lastStepTime > stepDelay)
-        {
-            fmodHelper.PlayOneshot(FMODEventStep);
-            lastStepTime = Time.time;
-        }
+        characterController.Move(velocity * Time.fixedDeltaTime);
     }
 }

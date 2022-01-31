@@ -15,29 +15,41 @@ public class FMODHelper
 
         foreach(string eventName in eventNames)
         {
-            FMODEvents.Add(eventName, RuntimeManager.CreateInstance("event:/" + eventName));
-            releasedEvents.Add(eventName, true);
+            if(eventName != null && eventName.Length > 0)
+            {
+                FMODEvents.Add(eventName, RuntimeManager.CreateInstance("event:/" + eventName));
+                releasedEvents.Add(eventName, true);
+            }
         }
     }
 
     public void PlayOneshot(string eventName)
     {
-        FMODEvents[eventName].start();
-        releasedEvents[eventName] = false;
+        if(FMODEvents.ContainsKey(eventName))
+        {
+            FMODEvents[eventName].start();
+            releasedEvents[eventName] = false;
+        }
     }
 
     public void PlayLoop(string eventName)
     {
-        FMODEvents[eventName].start();
+        if(FMODEvents.ContainsKey(eventName))
+        {
+            FMODEvents[eventName].start();
+        }
     }
 
     public void StopSound(string eventName, FMOD.Studio.STOP_MODE stopMode = FMOD.Studio.STOP_MODE.ALLOWFADEOUT)
     {
-        FMODEvents[eventName].stop(stopMode);
-        if(!releasedEvents[eventName])
+        if(FMODEvents.ContainsKey(eventName))
         {
-            FMODEvents[eventName].release();
-            releasedEvents[eventName] = true;
+            FMODEvents[eventName].stop(stopMode);
+            if(!releasedEvents[eventName])
+            {
+                FMODEvents[eventName].release();
+                releasedEvents[eventName] = true;
+            }
         }
     }
 }

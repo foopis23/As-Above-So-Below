@@ -39,7 +39,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3873742264417273969}
-  m_Mesh: {fileID: 4579454407841743219, guid: 99287f3bd8fc84a71ad4f44e547f8ec7, type: 3}
+  m_Mesh: {fileID: 4579454407841743219, guid: 0ef0d4b0ab2514b609f00f41b77d4de0, type: 3}
 --- !u!23 &9118660860255450147
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: 99287f3bd8fc84a71ad4f44e547f8ec7, type: 3}
+  - {fileID: 2100000, guid: 8bae0adedc0c34aa4ba80b9f3befbf84, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -120,7 +120,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7838113890512418332}
-  m_Mesh: {fileID: -462981019419857548, guid: 99287f3bd8fc84a71ad4f44e547f8ec7, type: 3}
+  m_Mesh: {fileID: -462981019419857548, guid: 0ef0d4b0ab2514b609f00f41b77d4de0, type: 3}
 --- !u!23 &6965491560533494204
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -140,7 +140,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: 99287f3bd8fc84a71ad4f44e547f8ec7, type: 3}
+  - {fileID: 2100000, guid: 8bae0adedc0c34aa4ba80b9f3befbf84, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -172,6 +172,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8447821144558931085}
   - component: {fileID: 4734141639101466595}
+  - component: {fileID: 1637912605}
+  - component: {fileID: 1637912607}
   m_Layer: 0
   m_Name: Pressure_Plate
   m_TagString: Untagged
@@ -214,3 +216,38 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1637912605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9112858190777177655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde0b7e3e07244c06b801c7e3f411600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 4734141639101466595}
+  downAnimationName: Pressure Plate Press
+  upAnimationName: Pressure Plate Release
+  activateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  deactivateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FMODEventPress: Pressure Plate On
+--- !u!65 &1637912607
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9112858190777177655}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7650881, y: 0.18972442, z: 0.72157073}
+  m_Center: {x: 0.49882627, y: 0.093622014, z: -0.4965166}

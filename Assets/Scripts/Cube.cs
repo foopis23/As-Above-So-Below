@@ -6,6 +6,7 @@ public class Cube : Interactable
 {
     // Editor Fields
     public float HoldDistance = 1.5f;
+    public string DropHintText;
 
     // Public Properties
     public bool IsHeld { get; private set; }
@@ -14,7 +15,7 @@ public class Cube : Interactable
     private Rigidbody rigidbody;
     private GravityController gravityController;
     private Camera camera;
-    private bool justPickedUp;
+    private Vector3 spawnPos;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -25,6 +26,8 @@ public class Cube : Interactable
         gravityController = GetComponent<GravityController>();
         camera = Camera.main;
         IsHeld = false;
+
+        spawnPos = transform.position;
     }
 
     // Update is called once per frame
@@ -35,19 +38,33 @@ public class Cube : Interactable
         if(IsHeld)
         {
             Vector3 holdPosition = camera.transform.position + camera.transform.up * -0.25f + camera.transform.forward * HoldDistance;
-            rigidbody.MovePosition(holdPosition);
-            rigidbody.MoveRotation(player.transform.rotation);
 
-            Debug.Log(justPickedUp);
-            if((!justPickedUp && Input.GetButtonDown("Interact")) || (holdPosition - transform.position).magnitude > 3f)
+            if(Input.GetButtonDown("Crush") || (holdPosition - transform.position).magnitude > 3f)
             {
                 IsHeld = false;
                 player.GetComponent<PlayerController>().IsHoldingObject = false;
+                player.GetComponent<PlayerController>().HeldObject = null;
                 gravityController.enabled = true;
                 gameObject.layer = LayerMask.NameToLayer("Default");
+                hintTextObject.enabled = false;
             }
+        }
 
-            justPickedUp = false;
+        if(transform.position.y < -10f)
+        {
+            transform.position = spawnPos;
+        }
+    }
+
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+        if(IsHeld)
+        {
+            Vector3 holdPosition = camera.transform.position + camera.transform.up * -0.25f + camera.transform.forward * HoldDistance;
+            rigidbody.MovePosition(holdPosition);
+            rigidbody.MoveRotation(player.transform.rotation);
         }
     }
 
@@ -57,9 +74,9 @@ public class Cube : Interactable
 
         IsHeld = true;
         player.GetComponent<PlayerController>().IsHoldingObject = true;
+        player.GetComponent<PlayerController>().HeldObject = gameObject;
         gravityController.enabled = false;
         gameObject.layer = LayerMask.NameToLayer("Held Cube");
-
-        justPickedUp = true;
+        hintTextObject.text = DropHintText;
     }
 }
